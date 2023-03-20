@@ -1,0 +1,55 @@
+﻿@page "/"
+@using AvnObservable
+
+<PageTitle>ObservableCollection With Selection</PageTitle>
+
+<h2>People:</h2>
+<select size="3" style="width:100%;" @onchange="PersonSelected">
+    @foreach (var person in People)
+    {
+        <option value=@person.Id>@person.Name</option>
+    }
+</select>
+
+@if (@People.SelectedItem != null)
+{
+    <br />
+    <br />
+    <h3>Selected Person:</h3>
+    <div style="padding-left:10px;">
+        Name:<br />
+        <input @bind=People.SelectedItem.Name @bind:event="oninput" />
+        <br />
+        <br />
+        Email:<br />
+        <input @bind=People.SelectedItem.Email @bind:event="oninput" />
+    </div>
+}
+
+@code
+{
+    ObservableCollectionWithSelection<Person> People
+        = new ObservableCollectionWithSelection<Person>();
+
+    protected override void OnInitialized()
+    {
+        People.Add(new Person { Id = 1, Name = "Isadora Jarr", Email = "isadora@jarr.com" });
+        People.Add(new Person { Id = 2, Name = "Ben Chillin", Email = "ben@chillin.com" });
+        People.Add(new Person { Id = 3, Name = "Hugh Jarms", Email = "hugh@jarms.com" });
+    }
+
+    void PersonSelected(ChangeEventArgs args)
+    {
+        // get the Id from the selected item
+        var id = Convert.ToInt32(args.Value);
+        // set the selected item from the id
+        People.SelectedItem = (from x in People where x.Id == id select x).FirstOrDefault();
+    }
+
+    public class Person
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+    }
+}

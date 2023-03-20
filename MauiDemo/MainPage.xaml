@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiDemo.MainPage">
+
+    <StackLayout Margin="20">
+        <Label FontSize="Medium" FontAttributes="Bold" Text="People"/>
+        <ScrollView VerticalOptions="FillAndExpand" >
+            <CollectionView x:Name="MyCollectionView"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding People.SelectedItem}"
+                            ItemsSource="{Binding People}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" 
+                                Text="{Binding Name}"/>
+                            <Label Grid.Column="1" 
+                                Text="{Binding Email}"
+                                Margin="4,0,0,0" 
+                                VerticalOptions="End" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <StackLayout>
+            <Label Text="Person"
+			        FontSize="Medium"
+			        Margin="0,24,0,0" />
+            <Entry Text="{Binding People.SelectedItem.Name}"
+                    TextChanged="PersonPropertyChanged"
+			        Placeholder="First Name"
+			        Margin="0,24,0,0" />
+            <Entry Text="{Binding People.SelectedItem.Email}"
+                    TextChanged="PersonPropertyChanged"
+			        Placeholder="Last Name"
+			        Margin="0,24,0,0" />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
