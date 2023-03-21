@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
-        <ListBox ItemsSource="{Binding People}" SelectedItem="{Binding People.SelectedItem}">
+        <ListBox x:Name="PeopleListBox" ItemsSource="{Binding People}" 
+                 SelectedItem="{Binding People.SelectedItem}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding Email}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

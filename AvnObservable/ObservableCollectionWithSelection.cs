@@ -28,7 +28,7 @@ public class ObservableCollectionWithSelection<T> : ObservableCollection<T> wher
         {
             if (selectedItem == null && this.Count > 0)
             {
-                selectedItem = this[0];
+                SelectedItem = this[0];
             }
             return selectedItem;
         }

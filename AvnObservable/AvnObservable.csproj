@@ -4,6 +4,15 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>AvnObservable</Title>
+    <Authors>Carl Franklin</Authors>
+    <Company>App vNext</Company>
+    <Description>ObservableCollectionWithSelection&lt;T&gt; adds a selected item to ObservableCollection&lt;T&gt;</Description>
+    <Copyright>Copyright © 2023 App vNext</Copyright>
+    <RepositoryUrl>https://github.com/carlfranklin/AvnObservable</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
