@@ -12,7 +12,7 @@
     <Copyright>Copyright © 2023 App vNext</Copyright>
     <RepositoryUrl>https://github.com/carlfranklin/AvnObservable</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
 </Project>
