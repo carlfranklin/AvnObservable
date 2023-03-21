@@ -20,5 +20,4 @@ public partial class MainWindow : Window
 
         DataContext = this;
     }
-
 }

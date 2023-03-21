@@ -39,6 +39,8 @@ public class ObservableCollectionWithSelection<T> : ObservableCollection<T> wher
             {
                 // Update the currently selected item in the collection
                 UpdateSelectedItemInCollection();
+                // prevent reentrancy
+                updating = true;
                 // Update the item
                 selectedItem = value;
                 // Save the hash code
@@ -47,11 +49,13 @@ public class ObservableCollectionWithSelection<T> : ObservableCollection<T> wher
                 var args = new PropertyChangedEventArgs("SelectedItem");
                 OnPropertyChanged(args);
                 OnRaiseSelectedItemChangedEvent(value);
+                // all done
+                updating = false;
             }
         }
     }
 
-    bool updating = false;  // to prevent re-entrancy
+    bool updating = false;  // to prevent reentrancy
 
     /// <summary>
     /// Update the selected item in the collection
@@ -60,6 +64,7 @@ public class ObservableCollectionWithSelection<T> : ObservableCollection<T> wher
     {
         if (updating) return;
 
+        // prevent reentrancy
         updating = true;
 
         if (SelectedItemHashCode != 0)
@@ -71,12 +76,14 @@ public class ObservableCollectionWithSelection<T> : ObservableCollection<T> wher
             if (item != null)
             {
                 var index = IndexOf(item);
-                // replace the item in the list
+                // replace the item in the list with itself to trigger updates
                 base[index] = selectedItem;
                 // Raise Changing event
                 OnRaiseSelectedItemChangingEvent(selectedItem);
             }
         }
+
+        // all done
         updating = false;
     }
 
